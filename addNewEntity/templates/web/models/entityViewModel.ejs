@@ -1,0 +1,11 @@
+'use strict';
+
+class <%= entityNamePascalCase %>ViewModel {
+    constructor(<%= entityFields.join(', ')%>) {
+<% entityFields.forEach(function(field){ -%>
+        this.<%= field %> = <%= field %>;
+<% }); -%>
+    }
+}
+
+module.exports = <%= entityNamePascalCase %>ViewModel;

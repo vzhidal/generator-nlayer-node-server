@@ -1,0 +1,34 @@
+'use strict';
+
+let Router = require('express').Router;
+let <%= entityNameCamelCase %>WebService = require('web/services/<%= entityNameCamelCase %>WebService');
+let webServiceExecutor = require('web/middleware/webServiceExecutor');
+let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+let validator = require('web/middleware/validator');
+let <%= entityNameCamelCase %>ValidationScheme = require('web/validationSchemes/<%= entityNameCamelCase %>ValidationScheme');
+
+let router = new Router();
+
+router.get('/',
+    webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'getAll')
+);
+
+router.get('/:id',
+    webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'getById')
+);
+
+router.post('/',
+    validator.validate(<%= entityNameCamelCase %>ValidationScheme),
+    webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'add', <%= entityNamePascalCase %>ViewModel)
+);
+
+router.put('/:id',
+    validator.validate(<%= entityNameCamelCase %>ValidationScheme),
+    webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'editById', <%= entityNamePascalCase %>ViewModel)
+);
+
+router.delete('/:id',
+    webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'removeById')
+);
+
+module.exports = router;

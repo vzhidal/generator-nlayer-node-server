@@ -1,0 +1,26 @@
+'use strict';
+
+let <%= entityNameCamelCase %>Repository = require('dataAccess/repositories/<%= entityNameCamelCase %>Repository');
+
+class <%= entityNamePascalCase %>AppService {
+    getAll() {
+        return <%= entityNameCamelCase %>Repository.getAll();
+    }
+
+    getById(<%= entityNameCamelCase %>Id) {
+        return <%= entityNameCamelCase %>Repository.getById(<%= entityNameCamelCase %>Id);
+    }
+
+    add(new<%= entityNamePascalCase %>) {
+        return <%= entityNameCamelCase %>Repository.add(new<%= entityNamePascalCase %>);
+    }
+
+    editById(<%= entityNameCamelCase %>Id, new<%= entityNamePascalCase %>) {
+        return <%= entityNameCamelCase %>Repository.editById(<%= entityNameCamelCase %>Id, new<%= entityNamePascalCase %>);
+    }
+
+    removeById(<%= entityNameCamelCase %>Id) {
+        return <%= entityNameCamelCase %>Repository.removeById(<%= entityNameCamelCase %>Id);
+    }
+}
+module.exports = new <%= entityNamePascalCase %>AppService();

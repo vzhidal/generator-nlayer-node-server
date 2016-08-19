@@ -1,0 +1,11 @@
+'use strict';
+
+class <%= entityNamePascalCase %>Model {
+    constructor(<%= entityFields.join(', ')%>) {
+<% entityFields.forEach(function(field){ -%>
+        this.<%= field %> = <%= field %>;
+<% }); -%>
+    }
+}
+
+module.exports = <%= entityNamePascalCase %>Model;

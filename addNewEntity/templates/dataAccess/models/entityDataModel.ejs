@@ -1,0 +1,22 @@
+'use strict';
+
+let dataProvider = require('common/helpers/dataProvider');
+
+let <%= entityNamePascalCase %>DataModel = dataProvider.define('<%= entityNameCamelCase %>', {
+<% entityFields.forEach(function(field){ -%>
+    <%= field %>: {
+        type: dataProvider.DataTypes.STRING,
+        field: '<%= field %>'
+    },
+<% }); -%>
+    createdAt: {
+        type: dataProvider.DataTypes.DATE,
+        field: 'createddate'
+    },
+    updatedAt: {
+        type: dataProvider.DataTypes.DATE,
+        field: 'lastmodifieddate'
+    }
+});
+
+module.exports = <%= entityNamePascalCase %>DataModel;

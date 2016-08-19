@@ -1,0 +1,17 @@
+'use strict';
+
+let autoMapper = require('common/helpers/autoMapper');
+let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+
+autoMapper.createMap(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model)
+    .forAllMembers(autoMapper.copy)
+    .convertToType(<%= entityNamePascalCase %>Model);
+
+autoMapper.createMap(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel)
+    .forAllMembers(autoMapper.copy)
+    .convertToType(<%= entityNamePascalCase %>ViewModel);
+
+autoMapper.createMap('RequestData', <%= entityNamePascalCase %>ViewModel)
+    .forAllMembers(autoMapper.copy)
+    .convertToType(<%= entityNamePascalCase %>ViewModel);

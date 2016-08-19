@@ -1,0 +1,11 @@
+'use strict';
+
+let autoMapper = require('common/helpers/autoMapper');
+let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+
+autoMapper.createMap('DataAccess<%= entityNamePascalCase %>Model', <%= entityNamePascalCase %>Model)
+    .forAllMembers(autoMapper.copy)
+    .convertToType(<%= entityNamePascalCase %>Model);
+
+autoMapper.createMap(<%= entityNamePascalCase %>Model, 'DataAccess<%= entityNamePascalCase %>Model')
+    .forAllMembers(autoMapper.copyDefinedOnly);

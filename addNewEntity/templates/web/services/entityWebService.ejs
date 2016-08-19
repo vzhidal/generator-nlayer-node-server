@@ -1,0 +1,41 @@
+'use strict';
+
+let autoMapper = require('common/helpers/autoMapper');
+let <%= entityNameCamelCase %>AppService = require('application/services/<%= entityNameCamelCase %>AppService');
+let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+
+class <%= entityNamePascalCase %>WebService {
+    getAll() {
+        return <%= entityNameCamelCase %>AppService
+            .getAll()
+            .then(<%= entityNameCamelCase %> => autoMapper.mapArray(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel, <%= entityNameCamelCase %>));
+    }
+
+    getById(query, params) {
+        return <%= entityNameCamelCase %>AppService
+            .getById(params.id)
+            .then(<%= entityNameCamelCase %> => autoMapper.map(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel, <%= entityNameCamelCase %>));
+    }
+
+    add(query, params, viewModel) {
+        let <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
+
+        return <%= entityNameCamelCase %>AppService
+            .add(<%= entityNameCamelCase %>Model)
+            .then(<%= entityNameCamelCase %> => autoMapper.map(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel, <%= entityNameCamelCase %>));
+    }
+
+    editById(query, params, viewModel) {
+        let <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
+
+        return <%= entityNameCamelCase %>AppService.editById(params.id, <%= entityNameCamelCase %>Model)
+            .then(<%= entityNameCamelCase %> => autoMapper.map(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel, <%= entityNameCamelCase %>));
+    }
+
+    removeById(query, params) {
+        return <%= entityNameCamelCase %>AppService.removeById(params.id);
+    }
+}
+
+module.exports = new <%= entityNamePascalCase %>WebService();

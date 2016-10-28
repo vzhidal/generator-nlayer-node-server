@@ -60,8 +60,10 @@ module.exports = generators.Base.extend({
         var self = this;
 
         var entityNameCamelCase = lodash.camelCase(self.entityName);
-        var entityNamePascalCase = lodash.capitalize(entityNameCamelCase);
+        var entityNamePascalCase = entityNameCamelCase.charAt(0).toUpperCase() + entityNameCamelCase.slice(1);
+
         var entityFields = self.entityFields || [];
+        var entityFields = lodash.forEach(entityFields, (field) => lodash.camelCase(field));
 
         var pathsConfig = [
             {

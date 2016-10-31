@@ -1,5 +1,5 @@
-var generators = require('yeoman-generator');
-var lodash = require('lodash');
+const generators = require('yeoman-generator');
+const lodash = require('lodash');
 
 module.exports = generators.Base.extend({
 
@@ -9,12 +9,12 @@ module.exports = generators.Base.extend({
     },
 
     prompting: function () {
-        var self = this;
+        const self = this;
 
-        var done = self.async();
-        var prompt = self.prompt.bind(this);
+        const done = self.async();
+        const prompt = self.prompt.bind(this);
 
-        var getField = function (callback) {
+        const getField = function (callback) {
             prompt({
                 type: 'input',
                 name: 'field',
@@ -28,7 +28,7 @@ module.exports = generators.Base.extend({
             }, callback);
         };
 
-        var confirmGettingField = function (callback) {
+        const confirmGettingField = function (callback) {
             prompt({
                 type: 'confirm',
                 name: 'isField',
@@ -37,7 +37,7 @@ module.exports = generators.Base.extend({
             }, callback);
         };
 
-        var getFields = function (fields, callback) {
+        const getFields = function (fields, callback) {
             confirmGettingField(function (results) {
                 if (results.isField) {
                     getField(function (newFieldResults) {
@@ -67,7 +67,7 @@ module.exports = generators.Base.extend({
             (field) =>lodash.camelCase(field)
         );
 
-        var pathsConfig = [
+        const pathsConfig = [
             {
                 templatePath: 'application/models/entityModel.ejs',
                 destinationPath:`server/application/models/${entityNameCamelCase}Model.js`,

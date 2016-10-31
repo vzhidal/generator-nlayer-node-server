@@ -57,13 +57,15 @@ module.exports = generators.Base.extend({
         });
     },
     writing: function () {
-        var self = this;
+        const self = this;
 
-        var entityNameCamelCase = lodash.camelCase(self.entityName);
-        var entityNamePascalCase = entityNameCamelCase.charAt(0).toUpperCase() + entityNameCamelCase.slice(1);
+        const entityNameCamelCase = lodash.camelCase(self.entityName);
+        const entityNamePascalCase = entityNameCamelCase.charAt(0).toUpperCase() + entityNameCamelCase.slice(1);
 
-        var entityFields = self.entityFields || [];
-        var entityFields = lodash.forEach(entityFields, (field) => lodash.camelCase(field));
+        const entityFields = lodash.map(
+            self.entityFields || [],
+            (field) =>lodash.camelCase(field)
+        );
 
         var pathsConfig = [
             {

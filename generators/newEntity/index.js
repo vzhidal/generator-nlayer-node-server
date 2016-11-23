@@ -5,56 +5,42 @@ module.exports = generators.Base.extend({
 
     constructor: function () {
         generators.Base.apply(this, arguments);
-        this.argument('entityName', { type: String, required: true });
-    },
 
-    prompting: function () {
+        this.argument('entityName', { type: String, required: true });
+        this.entityFields = [];
+    },
+    prompting: function promptField() {
         const self = this;
 
-        const done = self.async();
-        const prompt = self.prompt.bind(this);
-
-        const getField = function (callback) {
-            prompt({
-                type: 'input',
-                name: 'field',
-                message: 'Enter a field name:',
-                validate: function (input) {
-                    if (input && input.length) {
-                        return true;
-                    }
-                    return 'Field name is not valid. Please try again...';
-                }
-            }, callback);
-        };
-
-        const confirmGettingField = function (callback) {
-            prompt({
+        return self.prompt(
+            {
                 type: 'confirm',
                 name: 'isField',
                 message: 'Do you want to add a field?',
                 default: true
-            }, callback);
-        };
-
-        const getFields = function (fields, callback) {
-            confirmGettingField(function (results) {
-                if (results.isField) {
-                    getField(function (newFieldResults) {
-                        fields.push(newFieldResults.field);
-                        getFields(fields, callback);
-                    });
-                } else {
-                    callback(fields);
+            }
+        )
+            .then((confirm) => {
+                if (confirm.isField) {
+                    return self.prompt(
+                        {
+                            type: 'input',
+                            name: 'field',
+                            message: 'Enter a field name:',
+                            validate: function (input) {
+                                if (input && input.length) {
+                                    return true;
+                                }
+                                return 'Field name is not valid. Please try again...';
+                            }
+                        }
+                    )
+                        .then((input) => {
+                            self.entityFields.push(input.field);
+                            return promptField.apply(self);
+                        })
                 }
             });
-        };
-
-        getFields([], function (fields) {
-            console.log('fields:', fields);
-            self.entityFields = fields;
-            done()
-        });
     },
     writing: function () {
         const self = this;
@@ -63,7 +49,7 @@ module.exports = generators.Base.extend({
         const entityNamePascalCase = entityNameCamelCase.charAt(0).toUpperCase() + entityNameCamelCase.slice(1);
 
         const entityFields = lodash.map(
-            self.entityFields || [],
+            self.entityFields,
             (field) =>lodash.camelCase(field)
         );
 

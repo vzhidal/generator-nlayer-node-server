@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "description": "",
   "files": [
-    "app",
-    "router"
+    "generators"
   ],
   "keywords": [
     "yeoman-generator"
   ],
   "dependencies": {
     "lodash": "^4.6.0",
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^0.24.1"
   }
 }

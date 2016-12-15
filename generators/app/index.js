@@ -5,13 +5,8 @@ module.exports = yeoman.Base.extend({
         yeoman.Base.apply(this, arguments);
 
         this.argument('entityName', { type: String, required: true });
-
+    },
+    initializing: function () {
         this.composeWith('nlayer-server:newEntity', { args: [ this.entityName ] });
-    },
-    prompting: function () {
-
-    },
-    writing: function () {
-
     }
 });

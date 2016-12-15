@@ -2,7 +2,6 @@ const generators = require('yeoman-generator');
 const lodash = require('lodash');
 
 module.exports = generators.Base.extend({
-
     constructor: function () {
         generators.Base.apply(this, arguments);
 

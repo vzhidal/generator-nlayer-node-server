@@ -1,13 +1,13 @@
 'use strict';
 
-let Router = require('express').Router;
-let <%= entityNameCamelCase %>WebService = require('web/services/<%= entityNameCamelCase %>WebService');
-let webServiceExecutor = require('web/middleware/webServiceExecutor');
-let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
-let validator = require('web/middleware/validator');
-let <%= entityNameCamelCase %>ValidationScheme = require('web/validationSchemes/<%= entityNameCamelCase %>ValidationScheme');
+const Router = require('express').Router;
+const <%= entityNameCamelCase %>WebService = require('web/services/<%= entityNameCamelCase %>WebService');
+const webServiceExecutor = require('web/middleware/webServiceExecutor');
+const <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+const validator = require('web/middleware/validator');
+const <%= entityNameCamelCase %>ValidationScheme = require('web/validationSchemes/<%= entityNameCamelCase %>ValidationScheme');
 
-let router = new Router();
+const router = new Router();
 
 router.get('/',
     webServiceExecutor.executeWebServiceMethod(<%= entityNameCamelCase %>WebService, 'getAll')

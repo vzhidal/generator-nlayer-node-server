@@ -1,9 +1,9 @@
 'use strict';
 
-let autoMapper = require('common/helpers/autoMapper');
-let <%= entityNameCamelCase %>AppService = require('application/services/<%= entityNameCamelCase %>AppService');
-let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
-let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+const autoMapper = require('common/helpers/autoMapper');
+const <%= entityNameCamelCase %>AppService = require('application/services/<%= entityNameCamelCase %>AppService');
+const <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+const <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
 
 class <%= entityNamePascalCase %>WebService {
     getAll() {
@@ -19,7 +19,7 @@ class <%= entityNamePascalCase %>WebService {
     }
 
     add(query, params, viewModel) {
-        let <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
+        const <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
 
         return <%= entityNameCamelCase %>AppService
             .add(<%= entityNameCamelCase %>Model)
@@ -27,7 +27,7 @@ class <%= entityNamePascalCase %>WebService {
     }
 
     editById(query, params, viewModel) {
-        let <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
+        const <%= entityNameCamelCase %>Model = autoMapper.map(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model, viewModel);
 
         return <%= entityNameCamelCase %>AppService.editById(params.id, <%= entityNameCamelCase %>Model)
             .then(<%= entityNameCamelCase %> => autoMapper.map(<%= entityNamePascalCase %>Model, <%= entityNamePascalCase %>ViewModel, <%= entityNameCamelCase %>));

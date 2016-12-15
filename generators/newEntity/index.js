@@ -129,7 +129,7 @@ module.exports = generators.Base.extend({
             },
             {
                 templatePath: 'web/validationSchemes/entityValidationScheme.ejs',
-                destinationPath:`server/web/validationSchemes/${entityNameCamelCase}ValidationScheme.json`,
+                destinationPath:`server/web/validationSchemes/${entityNameCamelCase}ValidationScheme.js`,
                 params: {
                     entityFields: entityFields
                 }

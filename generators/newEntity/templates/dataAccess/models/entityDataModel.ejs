@@ -1,8 +1,8 @@
 'use strict';
 
-let dataProvider = require('common/helpers/dataProvider');
+const dataProvider = require('common/helpers/dataProvider');
 
-let <%= entityNamePascalCase %>DataModel = dataProvider.define('<%= entityNameCamelCase %>', {
+const <%= entityNamePascalCase %>DataModel = dataProvider.define('<%= entityNameCamelCase %>', {
 <% entityFields.forEach(function(field){ -%>
     <%= field %>: {
         type: dataProvider.DataTypes.STRING,

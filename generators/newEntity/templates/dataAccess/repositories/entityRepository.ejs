@@ -1,8 +1,8 @@
 'use strict';
 
-let BaseRepository = require('dataAccess/repositories/baseRepository');
-let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
-let <%= entityNamePascalCase %>DataModel = require('dataAccess/models/<%= entityNameCamelCase %>DataModel');
+const BaseRepository = require('dataAccess/repositories/baseRepository');
+const <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+const <%= entityNamePascalCase %>DataModel = require('dataAccess/models/<%= entityNameCamelCase %>DataModel');
 
 class <%= entityNamePascalCase %>Repository extends BaseRepository {
     constructor() {

@@ -1,8 +1,8 @@
 'use strict';
 
-let autoMapper = require('common/helpers/autoMapper');
-let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
-let <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
+const autoMapper = require('common/helpers/autoMapper');
+const <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+const <%= entityNamePascalCase %>ViewModel = require('web/models/<%= entityNameCamelCase %>ViewModel');
 
 autoMapper.createMap(<%= entityNamePascalCase %>ViewModel, <%= entityNamePascalCase %>Model)
     .forAllMembers(autoMapper.copy)

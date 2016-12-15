@@ -1,7 +1,7 @@
 'use strict';
 
-let autoMapper = require('common/helpers/autoMapper');
-let <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
+const autoMapper = require('common/helpers/autoMapper');
+const <%= entityNamePascalCase %>Model = require('application/models/<%= entityNameCamelCase %>Model');
 
 autoMapper.createMap('DataAccess<%= entityNamePascalCase %>Model', <%= entityNamePascalCase %>Model)
     .forAllMembers(autoMapper.copy)

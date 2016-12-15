@@ -1,1 +1,9 @@
-{}
+'use strict';
+
+const Joi = require('joi');
+
+module.exports = Joi.object({
+<% entityFields.forEach(function(field){ -%>
+    <%= field %>: Joi.any()<% if (entityFields.indexOf(field) < entityFields.length - 1) { %>,<% }%>
+<% }); -%>
+});

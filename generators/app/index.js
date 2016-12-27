@@ -7,10 +7,9 @@ module.exports = class extends YeomanGenerator {
         super(args, opts)
 
         this.argument('entityName', { type: String, required: true });
-        this.composeWith('nlayer-server:newEntity', { arguments : [ this.options.entityName ] });
     }
 
     initializing() {
-
+        this.composeWith('nlayer-server:newEntity', { arguments : [ this.options.entityName ] });
     }
 };
